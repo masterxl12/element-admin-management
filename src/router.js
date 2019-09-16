@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-
+import CreatArticle from './views/CreatArticle.vue'
+import ListArticle from './views/ListArticle.vue'
+import EditArticle from './views/EditArticle.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -9,15 +10,22 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      redirect:'/articles/index'
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      path:"/articles/index",
+      name:"article-list",
+      component:ListArticle
+    },
+    {
+      path: '/articles/create',
+      name: 'articles-create',
+      component: CreatArticle
+    },
+    {
+      path: '/articles/:id/edit', // :id表示动态参数
+      name: 'articles-edit',
+      component: EditArticle
     }
   ]
 })
